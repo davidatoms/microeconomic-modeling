@@ -1,0 +1,66 @@
+import React from 'react';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+
+const CompanyCharts = () => {
+  const data = [
+    { period: 0, acmeRev: 2300, betaRev: 1000, gammaRev: 1400, acmeCost: 3300, betaCost: 1800, gammaCost: 2200, acmeProfit: -1000, betaProfit: -800, gammaProfit: -800 },
+    { period: 2, acmeRev: 3000, betaRev: 1050, gammaRev: 1700, acmeCost: 2500, betaCost: 1500, gammaCost: 1600, acmeProfit: 500, betaProfit: -450, gammaProfit: 100 },
+    { period: 4, acmeRev: 3400, betaRev: 1100, gammaRev: 1900, acmeCost: 2800, betaCost: 1700, gammaCost: 1700, acmeProfit: 600, betaProfit: -600, gammaProfit: 200 },
+    { period: 6, acmeRev: 200, betaRev: 1100, gammaRev: 2000, acmeCost: 200, betaCost: 1700, gammaCost: 1800, acmeProfit: 0, betaProfit: -600, gammaProfit: 200 },
+    { period: 8, acmeRev: 0, betaRev: 200, gammaRev: 2100, acmeCost: 0, betaCost: 200, gammaCost: 1800, acmeProfit: 0, betaProfit: 0, gammaProfit: 300 },
+  ];
+
+  const renderChart = (title, dataKeys, yAxisLabel) => (
+    <div className="w-full h-96 mb-8">
+      <h2 className="text-xl font-bold mb-4">{title}</h2>
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis 
+            dataKey="period" 
+            label={{ value: 'Period', position: 'bottom', offset: 0 }}
+          />
+          <YAxis 
+            label={{ value: yAxisLabel, angle: -90, position: 'insideLeft', offset: 10 }}
+          />
+          <Tooltip />
+          <Legend />
+          {dataKeys.map(({ key, color, name }) => (
+            <Line
+              key={key}
+              type="monotone"
+              dataKey={key}
+              stroke={color}
+              name={name}
+              strokeWidth={2}
+            />
+          ))}
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+
+  return (
+    <div className="p-4">
+      {renderChart('Revenues Comparison', [
+        { key: 'acmeRev', color: '#1f77b4', name: 'Acme Corp Revenue' },
+        { key: 'betaRev', color: '#ff7f0e', name: 'Beta Industries Revenue' },
+        { key: 'gammaRev', color: '#2ca02c', name: 'Gamma Ltd Revenue' }
+      ], 'Revenue')}
+      
+      {renderChart('Costs Comparison', [
+        { key: 'acmeCost', color: '#1f77b4', name: 'Acme Corp Costs' },
+        { key: 'betaCost', color: '#ff7f0e', name: 'Beta Industries Costs' },
+        { key: 'gammaCost', color: '#2ca02c', name: 'Gamma Ltd Costs' }
+      ], 'Costs')}
+      
+      {renderChart('Profits Comparison', [
+        { key: 'acmeProfit', color: '#1f77b4', name: 'Acme Corp Profits' },
+        { key: 'betaProfit', color: '#ff7f0e', name: 'Beta Industries Profits' },
+        { key: 'gammaProfit', color: '#2ca02c', name: 'Gamma Ltd Profits' }
+      ], 'Profits')}
+    </div>
+  );
+};
+
+export default CompanyCharts;
