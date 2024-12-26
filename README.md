@@ -1,6 +1,6 @@
 # microeconomic-modeling
 
-![Companies Cost Revenue Profit](companies_cost_rev_prof.png)
+![Companies Cost Revenue Profit](graphs/companies_cost_rev_prof.png)
 
 ## description
 Using Mathematics for Economists, I am modeling different companies cost, revenue, and profit functions.
