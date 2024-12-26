@@ -1,5 +1,7 @@
 # microeconomic-modeling
 
+![Random Companies Graph](graphs/'Figure 2024-12-26 162840.png)
+
 ## description
 Using Mathematics for Economists, I am modeling different companies cost, revenue, and profit functions.
 
